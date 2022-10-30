@@ -104,30 +104,12 @@
           <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8 mb-5">
-              <form>
-  
-                <!-- <div class="post-box remove-padding">
-                  <div class="row widget-sidebar form-group">
-                    <p>
-                      Email <sup class="required">*</sup>
-                      <br>
-                    </p>
-                    <input type="text" class="form-control" id="email" name="email" placeholder="Your Answer" readonly />
-                    <p class="error-msg" id="email-error"></p>
-                  </div>
-                </div> -->
 
                 <div class="post-box remove-padding">
                   <div class="row widget-sidebar" style="text-align: center;">
                     <div id="reader"></div>
                   </div>
                 </div>
-  
-                <!-- <div class="text-center">
-                  <button type="submit" class="btn btn-success btn-lg">Check Booking Status</button>
-                </div> -->
-  
-              </form>
  
             </div>
           </div>
@@ -209,24 +191,16 @@
           const scriptURL = 'https://script.google.com/macros/s/AKfycbwlvM3mJO60Z9Ro2FmONcXNJ4NaEm3wDsdBiQJYcy56HELFx6WEdBLlOak20I0FyHOo/exec';
 
           $.get(scriptURL, form_data, function (response) {
-              $('form').off('submit', $.fn.wait);
               if (response.result == "no booking") {
-                  swal("No Upcoming Bookings!", "You have no upcoming bookings for this room associated with your account.", "success").then(value => {
-                      $('form').submit();
-                  });
+                  swal("No Upcoming Bookings!", "You have no upcoming bookings for this room associated with your account.", "success");
               } else if (response.result == "approved") {
                   var time = response.start_time.split("T")[1].slice(0, 5);
-                  swal("Success!", "Your booking for this room starting at " + time + " have been approved!", "success").then(value => {
-                      $('form').submit();
-                  });
+                  swal("Success!", "Your booking for this room starting at " + time + " have been approved!", "success");
               } else {
                   console.log(response.error);
                   $('form').on('submit', $.fn.form_submit);
                   swal("Error!", "There was an error in submitting the form. Please try again.", "error");
               }
-          
-              // location.assign('/');
-              // signOut();
           });
 
       }
