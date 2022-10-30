@@ -201,30 +201,19 @@
                 if (response.result == "no booking") {
                     swal("No Upcoming Bookings!", "You have no upcoming bookings for this room associated with your account.", "success");
                 } else if (response.result == "approved") {
-                    var time = response.start_time.split("T")[1].slice(0, 5);
-                    swal("Success!", "Your booking for this room starting at " + time + " have been approved!", "success");
+                    var start_time_arr = response.start_time.split("T");
+                    var start_date = start_time_arr[0];
+                    var start_time = start_time_arr[1].slice(0, 5);
+
+                    var end_time_arr = response.end_time.split("T");
+                    var end_date = end_time_arr[0];
+                    var end_time = end_time_arr[1].slice(0, 5);
+                    swal("Success!", "Your booking for this room from " + start_date + " " + start_time + " to "  + end_date + " " + end_time + " have been approved!", "success");
                 } else {
-                    console.log(response.error);
-                    $('form').on('submit', $.fn.form_submit);
                     swal("Error!", "There was an error in scanning the QR Code. Please check the QR and try again.", "error");
                 }
               })
               .catch(err => console.log(err));
-
-          // const scriptURL = 'https://script.google.com/macros/s/AKfycbwlvM3mJO60Z9Ro2FmONcXNJ4NaEm3wDsdBiQJYcy56HELFx6WEdBLlOak20I0FyHOo/exec';
-
-          // $.get(scriptURL, form_data, function (response) {
-          //     if (response.result == "no booking") {
-          //         swal("No Upcoming Bookings!", "You have no upcoming bookings for this room associated with your account.", "success");
-          //     } else if (response.result == "approved") {
-          //         var time = response.start_time.split("T")[1].slice(0, 5);
-          //         swal("Success!", "Your booking for this room starting at " + time + " have been approved!", "success");
-          //     } else {
-          //         console.log(response.error);
-          //         $('form').on('submit', $.fn.form_submit);
-          //         swal("Error!", "There was an error in scanning the QR Code. Please check the QR and try again.", "error");
-          //     }
-          // });
 
       }
       
