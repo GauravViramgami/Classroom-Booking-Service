@@ -119,7 +119,7 @@
 
                 <div class="post-box remove-padding">
                   <div class="row widget-sidebar" style="text-align: center;">
-                    <!-- <div id="reader"></div> -->
+                    <div id="reader"></div>
                   </div>
                 </div>
   
@@ -179,19 +179,19 @@
 
       var email = "<%= email %>";
 
-      // function onScanSuccess(decodedText, decodedResult) {
-      //     console.log(`Code scanned = ${decodedText}`, decodedResult);
-      // }
-      // let config = {
-      //   fps: 10,
-      //   qrbox: {width: 100, height: 100},
-      //   rememberLastUsedCamera: true,
-      //   supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA]
-      // };
+      function onScanSuccess(decodedText, decodedResult) {
+          console.log(`Code scanned = ${decodedText}`, decodedResult);
+      }
+      let config = {
+        fps: 10,
+        qrbox: {width: 100, height: 100},
+        rememberLastUsedCamera: true,
+        supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA]
+      };
 
-      // let html5QrcodeScanner = new Html5QrcodeScanner(
-      //   "reader", config, /* verbose= */ false);
-      // html5QrcodeScanner.render(onScanSuccess);
+      let html5QrcodeScanner = new Html5QrcodeScanner(
+        "reader", config, /* verbose= */ false);
+      html5QrcodeScanner.render(onScanSuccess);
     }
 
   </script>
