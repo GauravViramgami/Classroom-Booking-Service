@@ -180,35 +180,35 @@
       var email = "<%= email %>";
 
       function onScanSuccess(decodedText, decodedResult) {
-          html5QrcodeScanner.stop().then((ignore) => {
-            // QR Code scanning is stopped.
-              var form_data = {
-                  "Email": $('#email').val(),
-                  "Room": decodedText
-              };
+          
+          var form_data = {
+              "Email": $('#email').val(),
+              "Room": decodedText
+          };
 
-              const scriptURL = 'https://script.google.com/macros/s/AKfycbzgihfW4R9irGGS7uHWylywLMmkto51eeFFr97kXyJfN1p7Zqxf4MQGgwm0e0fwX8nz/exec';
+          const scriptURL = 'https://script.google.com/macros/s/AKfycbzgihfW4R9irGGS7uHWylywLMmkto51eeFFr97kXyJfN1p7Zqxf4MQGgwm0e0fwX8nz/exec';
 
-              $.get(scriptURL, form_data, function (response) {
-                  $('form').off('submit', $.fn.wait);
-                  if (response.result == "no booking") {
-                      swal("No Upcoming Bookings!", "You have no upcoming bookings for this room associated with your account.", "success").then(value => {
-                          $('form').submit();
-                      });
-                  } else if (response.result == "approved") {
-                      var time = response.start_time.split("T")[1].slice(0, 5);
-                      swal("Success!", "Your booking for this room starting at " + time + " have been approved!", "success").then(value => {
-                          $('form').submit();
-                      });
-                  } else {
-                      console.log(response.error);
-                      $('form').on('submit', $.fn.form_submit);
-                      swal("Error!", "There was an error in submitting the form. Please try again.", "error");
-                  }
-              });
-          }).catch((err) => {
-            // Stop failed, handle it.
+          $.get(scriptURL, form_data, function (response) {
+              $('form').off('submit', $.fn.wait);
+              if (response.result == "no booking") {
+                  swal("No Upcoming Bookings!", "You have no upcoming bookings for this room associated with your account.", "success").then(value => {
+                      $('form').submit();
+                  });
+              } else if (response.result == "approved") {
+                  var time = response.start_time.split("T")[1].slice(0, 5);
+                  swal("Success!", "Your booking for this room starting at " + time + " have been approved!", "success").then(value => {
+                      $('form').submit();
+                  });
+              } else {
+                  console.log(response.error);
+                  $('form').on('submit', $.fn.form_submit);
+                  swal("Error!", "There was an error in submitting the form. Please try again.", "error");
+              }
           });
+
+          location.assign('/');
+          signOut();
+
       }
       
       let config = {
