@@ -183,7 +183,7 @@
 
       function onScanSuccess(decodedText, decodedResult) {
           console.log(`Code scanned = ${decodedText}`, decodedResult);
-          document.getElementById("main").innerHTML = decodedText + "&&" + decodedResult;
+          document.getElementById("temp").innerHTML = decodedText + "&&" + decodedResult;
           document.getElementById("temp").style.display = "block";
 
       }
