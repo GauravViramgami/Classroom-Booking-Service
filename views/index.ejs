@@ -161,6 +161,7 @@
     // document.getElementById("main").style.display = "none";
 
     function onSignIn(googleUser) {
+      console.log(googleUser);
       var id_token = googleUser.credential;
       var xhr = new XMLHttpRequest();
       xhr.open('POST', '/login');
