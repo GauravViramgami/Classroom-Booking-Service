@@ -4,9 +4,6 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <!-- <meta name="google-signin-scope" content="profile email"> -->
-  <!-- <meta name="google-signin-client_id" content="655324710350-evlfdc95u22slcve3648t9bmf1prvia6.apps.googleusercontent.com">
-  <script src="https://apis.google.com/js/platform.js" async defer></script> -->
   <link rel="shortcut icon" type="image/jpg" href="/images/iitgn_logo.png"/>
   <title>Classroom Booking Service</title>
   <meta content="" name="description">
@@ -140,7 +137,6 @@
 
   <!-- Sign In Script -->
   <script>
-    // document.getElementById("main").style.display = "none";
     
     function onSignIn(googleUser) {
       var id_token = googleUser.credential;
@@ -190,7 +186,7 @@
 
           const scriptURL = "https://script.google.com/macros/s/AKfycbxQcTVtPelC179rbkH9p1NppqW5GF7e4kFYP8p8eMVqs0oDFqbi577DZJFNuolxxhd6/exec";
 
-          fetch(scriptURL, { //(Replace url with combine for CORS error)
+          fetch(scriptURL, { 
                 contentType: 'application/json; charset=utf-8',
                 dataType: 'json',
                 method: 'POST',
