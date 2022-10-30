@@ -177,7 +177,16 @@
     if ("<%= loggedIn %>" === "true" && "<%= email %>" != "-") {
       document.getElementById("main").style.display = "block";
 
-      var email = "<%= email %>";
+      var div1 = document.getElementById("reader__dashboard_section_csr");
+      if (div1) {
+        var div2 = div1.getElementsByTagName("span");
+        if (div2 && div2.length > 1) {
+          var buttons = div2[1].getElementsByTagName("button");
+          if (buttons && buttons.length > 1) {
+            buttons[1].click();
+          }
+        }
+      }
 
       function onScanSuccess(decodedText, decodedResult) {
 
@@ -193,7 +202,7 @@
           }
             
           var form_data = {
-              "Email": $('#email').val(),
+              "Email": "<%= email %>",
               "Room": decodedText
           };
 
