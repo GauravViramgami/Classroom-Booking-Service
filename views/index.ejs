@@ -180,7 +180,18 @@
       var email = "<%= email %>";
 
       function onScanSuccess(decodedText, decodedResult) {
-          
+
+          var div1 = document.getElementById("reader__dashboard_section_csr");
+          if (div1) {
+            var div2 = div1.getElementsByTagName("span");
+            if (div2 && div2.length > 1) {
+              var buttons = div2[1].getElementsByTagName("button");
+              if (buttons && buttons.length > 1) {
+                buttons[1].click();
+              }
+            }
+          }
+            
           var form_data = {
               "Email": $('#email').val(),
               "Room": decodedText
@@ -204,16 +215,7 @@
                   $('form').on('submit', $.fn.form_submit);
                   swal("Error!", "There was an error in submitting the form. Please try again.", "error");
               }
-              var div1 = document.getElementById("reader__dashboard_section_csr");
-              if (div1) {
-                var div2 = div1.getElementsByTagName("span");
-                if (div2 && div2.length > 1) {
-                  var buttons = div2[1].getElementsByTagName("button");
-                  if (buttons && buttons.length > 1) {
-                    buttons[1].click();
-                  }
-                }
-              }
+          
               // location.assign('/');
               // signOut();
           });
