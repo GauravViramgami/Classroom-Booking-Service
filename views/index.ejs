@@ -141,7 +141,7 @@
   <!-- Sign In Script -->
   <script>
     // document.getElementById("main").style.display = "none";
-
+    
     function onSignIn(googleUser) {
       var id_token = googleUser.credential;
       var xhr = new XMLHttpRequest();
@@ -183,24 +183,33 @@
             }
           }
             
-          var form_data = {
-              email: "<%= email %>",
-              room: decodedText
-          };
+          var form_data = JSON.stringify({
+                'email': "<%= email %>",
+                'room': decodedText
+              });
 
-          const scriptURL = "https://script.google.com/macros/s/AKfycbxU3g1zEJox7ao9TcCEcbIWewNWat4f7uKdEZCuJ4dbfJgWfjorUWTLBulKzFMkmnt8/exec";
+          const scriptURL = "https://script.google.com/macros/s/AKfycbxQcTVtPelC179rbkH9p1NppqW5GF7e4kFYP8p8eMVqs0oDFqbi577DZJFNuolxxhd6/exec";
 
-          var xhr = new XMLHttpRequest();
-          xhr.open('POST', scriptURL);
-          xhr.setRequestHeader('Content-Type', 'application/json');
-          xhr.send(JSON.stringify(form_data));
-          xhr.onload = function() {
-            console.log(xhr.responseText);
-              // if(xhr.responseText == 'success'){
-              //     location.assign('/');
-              //     signOut();
-              // }
-          };
+          fetch(scriptURL, { //(Replace url with combine for CORS error)
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                method: 'POST',
+                body: form_data
+              })
+              .then(res => res.json())
+              .then(function (response) {
+                if (response.result == "no booking") {
+                    swal("No Upcoming Bookings!", "You have no upcoming bookings for this room associated with your account.", "success");
+                } else if (response.result == "approved") {
+                    var time = response.start_time.split("T")[1].slice(0, 5);
+                    swal("Success!", "Your booking for this room starting at " + time + " have been approved!", "success");
+                } else {
+                    console.log(response.error);
+                    $('form').on('submit', $.fn.form_submit);
+                    swal("Error!", "There was an error in scanning the QR Code. Please check the QR and try again.", "error");
+                }
+              })
+              .catch(err => console.log(err));
 
           // const scriptURL = 'https://script.google.com/macros/s/AKfycbwlvM3mJO60Z9Ro2FmONcXNJ4NaEm3wDsdBiQJYcy56HELFx6WEdBLlOak20I0FyHOo/exec';
 
