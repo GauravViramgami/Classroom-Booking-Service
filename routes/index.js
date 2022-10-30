@@ -49,7 +49,7 @@ router.post('/login', (req, res) => {
     verify()
         .then(() => {
             res.cookie('session-token', token);
-            res.send(user)
+            res.send("success")
         })
         .catch(console.error);
 })
