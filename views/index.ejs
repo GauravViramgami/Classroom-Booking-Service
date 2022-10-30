@@ -123,14 +123,12 @@
                   </div>
                 </div>
   
-                <div class="text-center">
+                <!-- <div class="text-center">
                   <button type="submit" class="btn btn-success btn-lg">Check Booking Status</button>
-                </div>
+                </div> -->
   
               </form>
-
-              <div id="temp" style="display: none;">HIIIIIIIIIIIIIIIIIIIIIIIIIIIIII</div>
-  
+ 
             </div>
           </div>
         </div>
@@ -182,14 +180,35 @@
       var email = "<%= email %>";
 
       function onScanSuccess(decodedText, decodedResult) {
-          console.log(`Code scanned = ${decodedText}`, decodedResult);
-          document.getElementById("temp").innerHTML = decodedText + "&&" + decodedResult;
-          document.getElementById("temp").style.display = "block";
+          var form_data = {
+              "Email": $('#email').val(),
+              "Room": decodedText
+          };
+
+          const scriptURL = 'https://script.google.com/macros/s/AKfycbzgihfW4R9irGGS7uHWylywLMmkto51eeFFr97kXyJfN1p7Zqxf4MQGgwm0e0fwX8nz/exec';
+
+          $.get(scriptURL, form_data, function (response) {
+              $('form').off('submit', $.fn.wait);
+              if (response.result == "no booking") {
+                  swal("No Upcoming Bookings!", "You have no upcoming bookings for this room associated with your account.", "success").then(value => {
+                      $('form').submit();
+                  });
+              } else if (response.result == "approved") {
+                  var time = response.start_time.split("T")[1].slice(0, 5);
+                  swal("Success!", "Your booking for this room starting at " + time + " have been approved!", "success").then(value => {
+                      $('form').submit();
+                  });
+              } else {
+                  console.log(response.error);
+                  $('form').on('submit', $.fn.form_submit);
+                  swal("Error!", "There was an error in submitting the form. Please try again.", "error");
+              }
+          });
 
       }
       let config = {
         fps: 10,
-        // qrbox: {width: 100, height: 100},
+        qrbox: {width: 250, height: 250},
         rememberLastUsedCamera: true,
         supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA]
       };
