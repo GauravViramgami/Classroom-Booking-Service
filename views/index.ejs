@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <!-- <meta name="google-signin-scope" content="profile email"> -->
+  <!-- <meta name="google-signin-client_id" content="655324710350-evlfdc95u22slcve3648t9bmf1prvia6.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js" async defer></script> -->
+  <link rel="shortcut icon" type="image/jpg" href="/images/iitgn_logo.png"/>
+  <title>Classroom Booking Service</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Vendor CSS Files -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/vendor/animate/animate.min.css" rel="stylesheet">
+  <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/vendor/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&family=Montserrat&family=Raleway:wght@300;700&family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/css/style.css" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+</head>
+
+<body id="page-top">
+
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+  <!-- ======= Header ======= -->
+  <div class="intro intro-single route bg-image" style="background-image: url(/images/iitgn-bg.jpg)">
+    <div class="overlay-mf"></div>
+    <div class="intro-content display-table">
+      <div class="table-cell">
+        <div class="container">
+          <h1 class="title-a" style="color: white;font-family: 'Raleway';">Classroom Booking Service</h1>
+          <div class="line-mf mb-5" style="background-color: white;"></div>
+          <h5 class="subtitle-a" style="color: white;"></h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <% if (!loggedIn) { %>
+  <div id="my-signin-div" class="sign-in-div">
+    <br>
+        <div id="sign-in-change-text" class="sign-in-change-text text-center">Sign In to Check Booking Status</div>
+    <br>
+
+    <div id="g_id_onload"
+      data-client_id="655324710350-evlfdc95u22slcve3648t9bmf1prvia6.apps.googleusercontent.com"
+      data-context="signin"
+      data-ux_mode="popup"
+      data-callback="onSignIn"
+      data-auto_prompt="false">
+    </div>
+
+    <div class="g_id_signin text-center"
+        data-type="standard"
+        data-shape="rectangular"
+        data-theme="outline"
+        data-text="signin_with"
+        data-size="large"
+        data-logo_alignment="left">
+    </div>
+  </div>
+    <% } else { %>
+    <div id="my-signin-div" class="sign-in-div">
+    <br>
+        <div id="sign-in-change-text" class="sign-in-change-text text-center">You are signed in as: <%= email %></div>
+    <br>
+
+    <div class="sign-in-change-text text-center">
+        Sign in with another Email: 
+        <div id="g_id_onload"
+        data-client_id="655324710350-evlfdc95u22slcve3648t9bmf1prvia6.apps.googleusercontent.com"
+        data-context="signin"
+        data-ux_mode="popup"
+        data-callback="onSignIn"
+        data-auto_prompt="false">
+      </div>
+  
+      <div class="g_id_signin"
+          data-type="standard"
+          data-shape="rectangular"
+          data-theme="outline"
+          data-text="signin_with"
+          data-size="large"
+          data-logo_alignment="left">
+      </div>
+    </div>
+    
+    </div>
+
+  <main id="main" class="main">
+    <!-- ======= Research Section ======= -->
+    <section class="blog-wrapper sect-pt4" id="research">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 mb-5">
+              <form>
+  
+                <div class="post-box remove-padding">
+                  <div class="row widget-sidebar form-group">
+                    <p>
+                      Email <sup class="required">*</sup>
+                      <br>
+                    </p>
+                    <input type="text" class="form-control" id="email" name="email" placeholder="Your Answer" readonly />
+                    <p class="error-msg" id="email-error"></p>
+                  </div>
+                </div>
+
+                <div class="post-box remove-padding">
+                  <div class="row widget-sidebar" style="text-align: center;">
+                    <div id="reader"></div>
+                  </div>
+                </div>
+  
+                <div class="text-center">
+                  <button type="submit" class="btn btn-success btn-lg">Check Booking Status</button>
+                </div>
+  
+              </form>
+  
+            </div>
+          </div>
+        </div>
+      </section><!-- End Form Section -->
+  
+  </main><!-- End #main -->
+  <% } %>
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+  <!-- <div id="preloader"></div> -->
+
+  <!-- Vendor JS Files -->
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="/vendor/php-email-form/validate.js"></script>
+  <script src="/vendor/waypoints/jquery.waypoints.min.js"></script>
+  <script src="/vendor/counterup/jquery.counterup.min.js"></script>
+  <script src="/vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="/vendor/typed.js/typed.min.js"></script>
+  <script src="/vendor/venobox/venobox.min.js"></script>
+  <script src="/vendor/wow/wow.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+  <script src="/js/index.js"></script>
+
+  <!-- Sign In Script -->
+  <script>
+    document.getElementById("main").style.display = "none";
+
+    function onSignIn(googleUser) {
+      var id_token = googleUser.credential;
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', '/login');
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.send(JSON.stringify({token : id_token}));
+      xhr.onload = function() {
+          if(xhr.responseText == 'success'){
+              location.assign('/');
+              signOut();
+          }
+      };
+    }
+
+    if ("<%= loggedIn %>" === "true" && "<%= email %>" != "-") {
+      document.getElementById("main").style.display = "block";
+
+      var email = "<%= email %>";
+
+      function onScanSuccess(decodedText, decodedResult) {
+          console.log(`Code scanned = ${decodedText}`, decodedResult);
+      }
+      let config = {
+        fps: 10,
+        qrbox: {width: 100, height: 100},
+        rememberLastUsedCamera: true,
+        supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA]
+      };
+
+      let html5QrcodeScanner = new Html5QrcodeScanner(
+        "reader", config, /* verbose= */ false);
+      html5QrcodeScanner.render(onScanSuccess);
+    }
+
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</body>
+
+</html>
