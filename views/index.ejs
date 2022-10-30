@@ -128,6 +128,8 @@
                 </div>
   
               </form>
+
+              <div id="temp" style="display: none;">HIIIIIIIIIIIIIIIIIIIIIIIIIIIIII</div>
   
             </div>
           </div>
@@ -181,10 +183,13 @@
 
       function onScanSuccess(decodedText, decodedResult) {
           console.log(`Code scanned = ${decodedText}`, decodedResult);
+          document.getElementById("main").innerHTML = decodedText + "&&" + decodedResult;
+          document.getElementById("temp").style.display = "block";
+
       }
       let config = {
         fps: 10,
-        qrbox: {width: 100, height: 100},
+        // qrbox: {width: 100, height: 100},
         rememberLastUsedCamera: true,
         supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA]
       };
