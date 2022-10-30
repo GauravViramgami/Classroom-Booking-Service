@@ -204,10 +204,9 @@
                   $('form').on('submit', $.fn.form_submit);
                   swal("Error!", "There was an error in submitting the form. Please try again.", "error");
               }
+              location.assign('/');
+              signOut();
           });
-
-          location.assign('/');
-          signOut();
 
       }
       
