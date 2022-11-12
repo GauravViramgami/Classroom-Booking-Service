@@ -180,11 +180,12 @@
           }
             
           var form_data = JSON.stringify({
+                'event': "qrscan",
                 'email': "<%= email %>",
                 'room': decodedText
               });
 
-          const scriptURL = "https://script.google.com/macros/s/AKfycby1Ko18L36_vsszPBdJbG2dxhSN5Z4TSKDuHCyRusEOEYcOMOCxr7IppN-Hq86i6NeQ6Q/exec";
+          const scriptURL = "https://script.google.com/macros/s/AKfycbw_N5TWvcZuFyArT-Z3RLgJx90x6D2R-xpmSm2t_16-F8raN_D-mva6g1_BPGF6kXJ_bQ/exec";
 
           fetch(scriptURL, { 
                 contentType: 'application/json; charset=utf-8',
