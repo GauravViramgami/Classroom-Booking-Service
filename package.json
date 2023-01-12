@@ -4,7 +4,7 @@
   "description": "Classroom Booking System for IITGN",
   "main": "app.js",
   "scripts": {
-    "test": "node app.js"
+    "start": "node app.js"
   },
   "author": "Gaurav Viramgami",
   "license": "ISC",
