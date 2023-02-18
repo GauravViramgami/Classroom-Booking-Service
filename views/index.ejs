@@ -133,7 +133,7 @@
   <script src="/vendor/wow/wow.min.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+  <script src="https://unpkg.com/html5-qrcode@2.3.2/html5-qrcode.min.js" type="text/javascript"></script>
   <script src="/js/index.js"></script>
 
   <!-- Sign In Script -->
@@ -168,6 +168,7 @@
       }
 
       function onScanSuccess(decodedText, decodedResult) {
+          console.log("Hello");
 
           var div1 = document.getElementById("reader__dashboard_section_csr");
           if (div1) {
